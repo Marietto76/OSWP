@@ -156,5 +156,20 @@ https://github.com/NotSoSecure/password_cracking_rules/blob/master/OneRuleToRule
 
 
 
+##CAMBIO DE MAC a wlan0
+
+sudo ifconfig wlan0 down
+sudo macchanger -m 48:E7:DA:58:C7:3B wlan0
+y de ahi subo la interfaz
+sudo ifconfig wlan0 up
+
+/etc/NetworkManager/conf.d
+[device]
+wifi.scan-rand-mac-address=no
+[connection]
+ethernet.cloned-mac-address=preserve
+wifi.cloned-mac-address=preserve
+
+
 
 
