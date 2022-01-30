@@ -146,6 +146,10 @@ File hashesgenerados does not exist, creating.
 
 cowpatty -r file.cap -d hashesgenerados -2 -s "KAROL CAJAS"
 
+###RULES 
+
+
+Hashcat64.exe -m 1000 “hashesNTLM.txt” F://rockyou.txt -r .\rules\OneRuletorulethemall.rule
 
 
 
