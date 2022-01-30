@@ -170,6 +170,9 @@ wifi.scan-rand-mac-address=no
 ethernet.cloned-mac-address=preserve
 wifi.cloned-mac-address=preserve
 
+###Programas para graficas para informe
+
+inSSIDer | and there are other Alternatives for Linux
 
 
 
