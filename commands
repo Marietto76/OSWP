@@ -153,7 +153,11 @@ Hashcat64.exe -m 1000 “hashesNTLM.txt” F://rockyou.txt -r .\rules\OneRuletor
 
 https://github.com/NotSoSecure/password_cracking_rules/blob/master/OneRuleToRuleThemAll.rule
 
+//imprimir si la regla es exitosa
+tarea1. crear diccionario con una sola palabara hackermentor
+convertir a hackermentor a 1Hac0krm3ntor@
 
+.\hashcat64.exe .\diiccionario.txt -r .\rules\reglaspersonalizadas.rule --stdout
 
 
 ##CAMBIO DE MAC a wlan0
@@ -173,6 +177,7 @@ wifi.cloned-mac-address=preserve
 ###Programas para graficas para informe
 
 inSSIDer | and there are other Alternatives for Linux
+
 
 
 
