@@ -151,6 +151,8 @@ cowpatty -r file.cap -d hashesgenerados -2 -s "KAROL CAJAS"
 
 Hashcat64.exe -m 1000 “hashesNTLM.txt” F://rockyou.txt -r .\rules\OneRuletorulethemall.rule
 
+https://github.com/NotSoSecure/password_cracking_rules/blob/master/OneRuleToRuleThemAll.rule
+
 
 
 
