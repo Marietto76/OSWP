@@ -156,7 +156,7 @@ https://github.com/NotSoSecure/password_cracking_rules/blob/master/OneRuleToRule
 //imprimir si la regla es exitosa
 tarea1. crear diccionario con una sola palabara hackermentor
 convertir a hackermentor a 1Hac0krm3ntor@
-
+tarea2. hacer nuevo informe con formato wnviado a facebook, crackear wpa o wep pero con este nuevo formato.
 .\hashcat64.exe .\diiccionario.txt -r .\rules\reglaspersonalizadas.rule --stdout
 
 
